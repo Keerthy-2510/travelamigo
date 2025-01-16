@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Amigo</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #07524f;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .splash-screen {
+            text-align: center;
+        }
+
+        .splash-screen h1 {
+            font-size: 3em;
+            color: #888d2f;
+        }
+
+        .splash-screen p {
+            font-size: 1.5em;
+            color: #888d2f;
+        }
+
+        .loader {
+            border: 8px solid #888d2f;
+            border-top: 8px solid #07524f;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="splash-screen">
+        <h1>Welcome to Travel Amigo</h1>
+        <p>Your travel companion!</p>
+        <div class="loader"></div>
+    </div>
+
+    <script>
+        // Redirect to the home page after 3 seconds
+        setTimeout(function() {
+            window.location.href = "{% url 'home' %}";
+        }, 3000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find your Bus</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            padding: 20px;
+            margin-top: 50px;
+        }
+
+        .icon {
+            width: 100px;
+            height: auto;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin: 20px 0;
+            color: #333;
+        }
+
+        .form-container {
+            margin: 20px auto;
+            max-width: 400px;
+            text-align: left;
+        }
+
+        label {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .time-option {
+            margin-bottom: 20px;
+        }
+
+        .button {
+            width: 100%;
+            padding: 12px;
+            background-color: #333;
+            color: #fff;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img class="icon" src="https://www.downloadclipart.net/thumb/27218-blue-bus-icon.png" alt="Bus Icon">
+        <h1>Good Evening!<br>Where are you going?</h1>
+        <div class="form-container">
+            <label for="from">From</label>
+            <input type="text" id="from" placeholder="Enter Starting Location">
+        
+            <label for="to">To</label>
+            <input type="text" id="to" placeholder="Enter Ending Location">
+
+            <script>
+                document.getElementById('from').addEventListener('click', function() {
+                    window.location.href = 'index1.html'; // Link to the next page
+                });
+
+                document.getElementById('to').addEventListener('click', function() {
+                    window.location.href = 'index2.html'; // Link to the next page
+                });
+            </script>
+
+            <div class="time-option">
+                <label for="time">Leaving Now</label>
+                <input type="datetime-local" id="time">
+            </div>
+
+            <button class="button" onclick="submitForm()">Find Bus</button>
+        </div>
+    </div>
+
+    <script>
+        // Set the default value of the datetime-local input to the current time
+        const timeInput = document.getElementById('time');
+        const setCurrentTime = () => {
+            const now = new Date();
+            const formattedDateTime = now.toISOString().slice(0, 16); // Format to YYYY-MM-DDTHH:mm
+            timeInput.value = formattedDateTime;
+        };
+
+        // Run the function to pre-fill the datetime-local field
+        setCurrentTime();
+
+        // Handle form submission
+        function submitForm() {
+            const from = document.getElementById('from').value;
+            const to = document.getElementById('to').value;
+            const time = timeInput.value || new Date().toISOString().slice(0, 16);
+
+            if (!from || !to) {
+                alert('Please fill in both "From" and "To" fields.');
+            } else {
+                // Redirecting to another page with query parameters
+                window.location.href = `search_results.html?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}&time=${encodeURIComponent(time)}`;
+            }
+        }
+    </script>
+</body>
+</html>
